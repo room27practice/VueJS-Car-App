@@ -1,5 +1,5 @@
 <template>
-  <div class="card mx-2" style="width: 18rem" >
+  <div class="card mx-2" style="width: 18rem"  v-bind:class="{dimmed :!info.isChosen}" >
     <img :src="info.imgUrl" class="card-img-top" alt="audi" />
     <div class="card-body">
       <p class="card-text">
@@ -29,6 +29,7 @@ export default {
 
   props: {
     info: {
+      id:Number,
       isChosen: Boolean,
       imgUrl: String,
       title: String,
@@ -36,6 +37,8 @@ export default {
       additionalText: String,
     },
   },
+
+  // methods:
 };
 </script>
 <style scoped>

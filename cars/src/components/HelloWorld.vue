@@ -14,11 +14,11 @@ import CarDet from "./car-elements/CarDetailsComponent.vue";
 
 export default {
   name: "HelloWorld",
-
   data: function () {
     return {
       carArticles: [
         {
+          id: 1,
           title: "Audi",
           isChosen: false,
           imgUrl:
@@ -34,14 +34,16 @@ export default {
           in the world.`,
         },
         {
+          id: 2,
           title: "Mercedes",
-          isChosen: true,
+          isChosen: false,
           imgUrl:
             "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Mercedes_Benz_Classe_S_dsc06455.jpg/1024px-Mercedes_Benz_Classe_S_dsc06455.jpg",
           mainTxt: ` Мерцедес-Бенц (немско произношение mɛʁˈtseːdəs ˈbɛnts) е търговска марка за производство на автомобили`,
           additionalText: `камиони, автобуси, двигатели и други, създадена от компанията „Даймлер-Бенц“ (Daimler-Benz AG), сега собственост на концерна „Даймлер“ (Daimler AG).`,
         },
         {
+          id: 3,
           title: "Buggatti",
           isChosen: false,
           imgUrl:
@@ -50,6 +52,7 @@ export default {
           additionalText: `През 2010 г. списанията Top Gear и Robb Report присъждат наградата „Автомобил на десетилетието“ на Bugatti Veyron и неговата модификация Grand Sport, съответно[2]. Модификацията Super Sport през 2010 г. подобрява световния рекорд за скорост и става най-бързия сериен автомобил в света. Производството на Veyron към момента е приключено, общо са продадени 450 автомобила: 300 купе и 150 роудстъри.`,
         },
         {
+          id: 4,
           title: "Pagani Zonda",
           isChosen: false,
           imgUrl:
@@ -66,6 +69,23 @@ export default {
   },
   components: {
     CarDet,
+  },
+
+  methods: {
+    selectCard: function (id) {
+      for (let i = 0; i < this.carArticles.length; i++) {
+      let current=this.carArticles[i]
+      if (id==current.id){
+      current.isChosen=true;
+      }
+      else{
+      current.isChosen=false;
+}
+}
+this.carArticles.
+
+
+    },
   },
 };
 </script>
