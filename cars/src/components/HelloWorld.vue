@@ -1,10 +1,23 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <div class="main-pic-container">
+      <h1 v-if="!imgSelected">{{ msg }}</h1>
+      <img
+        class="main-pic"
+        v-if="imgSelected"
+        :src="imgSelected"
+        alt="chosenCar"
+      />
+    </div>
 
     <h3>Automobile Brands:</h3>
     <div class="px-4 d-flex">
-      <CarDet v-for="(car, index) in carArticles" :key="index" :info="car" />
+      <CarDet
+        v-for="(car, index) in carArticles"
+        :key="index"
+        v-bind:info="car"
+        v-on:choose="setCard"
+      />
     </div>
   </div>
 </template>
@@ -16,6 +29,7 @@ export default {
   name: "HelloWorld",
   data: function () {
     return {
+      imgSelected: "",
       carArticles: [
         {
           id: 1,
@@ -72,19 +86,18 @@ export default {
   },
 
   methods: {
-    selectCard: function (id) {
+    setCard: function (ev, id) {
+      console.log(id);
+      console.log(ev);
       for (let i = 0; i < this.carArticles.length; i++) {
-      let current=this.carArticles[i]
-      if (id==current.id){
-      current.isChosen=true;
+        let current = this.carArticles[i];
+        if (id == current.id) {
+          current.isChosen = true;
+          this.imgSelected = current.imgUrl;
+        } else {
+          current.isChosen = false;
+        }
       }
-      else{
-      current.isChosen=false;
-}
-}
-this.carArticles.
-
-
     },
   },
 };
@@ -105,5 +118,14 @@ li {
 }
 a {
   color: #42b983;
+}
+
+div.main-pic-container{
+  height: 30rem;
+}
+img.main-pic {
+  max-height: 28rem;
+  width:auto;
+  border-radius: 2rem;
 }
 </style>

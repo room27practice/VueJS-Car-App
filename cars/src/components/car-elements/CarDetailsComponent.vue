@@ -1,6 +1,10 @@
 <template>
-  <div class="card mx-2" style="width: 18rem"  v-bind:class="{dimmed :!info.isChosen}" >
-    <img :src="info.imgUrl" class="card-img-top" alt="audi" />
+  <div
+    class="card mx-2"
+    style="width: 18rem"
+    v-bind:class="{ chosen: info.isChosen }"
+  >
+    <img :src="info.imgUrl" class="card-img-top" alt="audi" @mouseover="select" />
     <div class="card-body">
       <p class="card-text">
         <span class="my-text">{{ info.title }}</span
@@ -29,7 +33,7 @@ export default {
 
   props: {
     info: {
-      id:Number,
+      id: Number,
       isChosen: Boolean,
       imgUrl: String,
       title: String,
@@ -38,7 +42,11 @@ export default {
     },
   },
 
-  // methods:
+  methods: {
+    select: function (ev) {
+      this.$emit("choose",ev,this.info.id);
+    },
+  },
 };
 </script>
 <style scoped>
@@ -56,18 +64,20 @@ export default {
   color: orangered;
 }
 
+  
 div.card {
   border-radius: 1rem;
-  border: 2px solid darkgreen; 
+  border: 2px solid darkgreen;
+  opacity: 50%;
 }
+  div.chosen {
+    opacity: 100%;
+    border-color: blueviolet;
+  }
 
 div.card img {
   border-radius: 1rem 1rem 0 0;
   height: 11rem;
-}
-
-.dimmed{
- opacity: 50%;
 }
 
 /* div.selected {
